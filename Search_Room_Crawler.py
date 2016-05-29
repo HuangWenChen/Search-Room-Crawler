@@ -14,15 +14,15 @@ class course:
 		self.room_id=room_id
 
 def login(session, username, password):
-    payload = {"uid": username, "pwd": password}
-    r = session.post(login_url, data=payload, timeout=LOGIN_TIMEOUT)
-    root = etree.HTML(r.text)
-    try:
-        is_login = not root.xpath("//script")[-1].text.startswith("alert")
-    except:
-        is_login = False
+	payload = {"uid": username, "pwd": password}
+	r = session.post(login_url, data=payload, timeout=LOGIN_TIMEOUT)
+	root = etree.HTML(r.text)
+	try:
+		is_login = not root.xpath("//script")[-1].text.startswith("alert")
+	except:
+		is_login = False
 
-    return is_login
+	return is_login
 
 def catch_room(session,username,password):
 	payload={
@@ -70,7 +70,7 @@ def catch_room(session,username,password):
 					print(list(a[i].itertext())[0])
 
 if __name__ == "__main__":
-    s = requests.session()
-    is_login = login(s, "guest", "123")
-    print(is_login)
-    catch_room(s,"guest","123")
+	s = requests.session()
+	is_login = login(s, "guest", "123")
+	print(is_login)
+	catch_room(s,"guest","123")
